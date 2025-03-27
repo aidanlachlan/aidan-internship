@@ -10,3 +10,24 @@
 @import "./css/styles/style.css";
 @import "./css/colors/scheme-01.css";
 @import "./css/styles/coloring.css";
+
+
+.slick-prev:before, .slick-next:before {
+    /* background-color: black; */
+    align-content: center;
+    background-color: black;
+    border-radius: 50px;
+    font-size: 25px !important;
+    border: 1px solid gray;
+}
+
+.slick-prev, .slick-next {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .slick-slide > div {
+    margin: 0 5px;
+} */

@@ -20,12 +20,11 @@ const HotCollections = () => {
     setHotCollections(data);
   }
 
-  
   function renderHotCollections() {
     return hotCollections.map((item) => {
       return (
-        <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
-          <div className="nft_coll">
+        <div className="px-2">
+          <div className="nft_coll" key={item.id}>
             <div className="nft_wrap">
               <Link to={`/item-details/${item.nftId}`}>
                 <img src={item.nftImage} className="lazy img-fluid" alt="" />
@@ -48,7 +47,7 @@ const HotCollections = () => {
       );
     });
   }
-  
+
   useEffect(() => {
     fetchHotCollections();
   }, []);
@@ -56,10 +55,34 @@ const HotCollections = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
+    speed: 250,
     slidesToShow: 4,
-    slideToScroll: 1
-  }
+    slideToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 980,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
 
   return (
     <section id="section-collections" className="no-bottom">
