@@ -6,25 +6,30 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import CardSkeleton from "../CardSkeleton";
 
 const HotCollections = () => {
   // https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
 
   const [hotCollections, setHotCollections] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   async function fetchHotCollections() {
     const { data } = await axios.get(
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
     );
-    console.log(data);
+    // console.log(data);
     setHotCollections(data);
+    setIsLoading(false)
   }
 
   function renderHotCollections() {
     return hotCollections.map((item) => {
       return (
-        <div className="px-2">
-          <div className="nft_coll" key={item.id}>
+        <div className="px-2" key={item.id}>
+          <div className="nft_coll">
             <div className="nft_wrap">
               <Link to={`/item-details/${item.nftId}`}>
                 <img src={item.nftImage} className="lazy img-fluid" alt="" />
@@ -48,6 +53,13 @@ const HotCollections = () => {
     });
   }
 
+  function renderCardSkeleton() {
+    return Array(6).fill(0).map((_, i)=> {
+      <CardSkeleton key={i}/>
+    })
+  }
+
+
   useEffect(() => {
     fetchHotCollections();
   }, []);
@@ -64,7 +76,6 @@ const HotCollections = () => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
         },
       },
       {
@@ -95,7 +106,7 @@ const HotCollections = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {hotCollections ? renderHotCollections() : "loading..."}
+            {isLoading ? <CardSkeleton /> : renderHotCollections()}
           </Slider>
         </div>
       </div>
