@@ -6,15 +6,15 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import CardSkeleton from "../CardSkeleton";
 
 const HotCollections = () => {
   // https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
 
   const [hotCollections, setHotCollections] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchHotCollections() {
     const { data } = await axios.get(
@@ -22,7 +22,9 @@ const HotCollections = () => {
     );
     // console.log(data);
     setHotCollections(data);
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
   }
 
   function renderHotCollections() {
@@ -54,11 +56,12 @@ const HotCollections = () => {
   }
 
   function renderCardSkeleton() {
-    return Array(6).fill(0).map((_, i)=> {
-      <CardSkeleton key={i}/>
-    })
+    return Array(6)
+      .fill(0)
+      .map((_, i) => {
+        <CardSkeleton key={i} />;
+      });
   }
-
 
   useEffect(() => {
     fetchHotCollections();
