@@ -14,7 +14,6 @@ const TopSellersSkeleton = () => {
             padding: 0,
           }}
         />
-        {/* <img className="lazy pp-author" src={seller.authorImage} alt="" /> */}
         <i className="fa fa-check"></i>
       </div>
       <div className="author_list_info">
