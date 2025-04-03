@@ -31,25 +31,46 @@ const NewItemsSkeleton = () => {
           </a>
         </div>
         <div className="nft__item_info">
-            <h4>
-              <Skeleton />
-            </h4>
-            <div className="nft__item_price" style={{
-            display: 'flex',
-            alignItems: 'center'
-            }}>
-              <Skeleton width={50} style={{
+          <h4
+            style={{
+              padding: 0,
+              margin: 0,
+            }}
+          >
+            <Skeleton
+              style={{
                 margin: 0,
-                padding: 0
-              }}/>
-            </div>
-          <div className="nft__item_like" style={{
-            display: 'flex',
-            alignItems: 'center'
+                padding: 0,
+              }}
+            />
+          </h4>
+          <div
+            className="nft__item_price"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginLeft: "-10px",
+              padding: 0,
+            }}
+          >
+            <Skeleton
+              width={50}
+              style={{
+                margin: 0,
+                padding: 0,
+              }}
+            />
+          </div>
+          <div
+            className="nft__item_like"
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span style={{
+                marginLeft: '-20px'
             }}>
-            <i className="fa fa-heart"></i>
-            <span>
-              <Skeleton />
             </span>
           </div>
         </div>

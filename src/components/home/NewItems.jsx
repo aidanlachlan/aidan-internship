@@ -21,7 +21,7 @@ const NewItems = () => {
     setNewItems(data);
     setTimeout(() => {
       setIsLoading(false)
-    }, 3000)
+    }, 1000)
   }
 
   const settings = {
@@ -94,7 +94,7 @@ const NewItems = () => {
                   </div>
                 </div>
               </div>
-              <Link to="/item-details">
+              <Link to={`/item-details/${item.nftId}`}>
                 <img
                   src={item.nftImage}
                   className="lazy nft__item_preview"

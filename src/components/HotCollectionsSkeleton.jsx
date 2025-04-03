@@ -24,10 +24,10 @@ const HotCollectionsSkeleton = () => {
         </div>
         <div className="nft_coll_info">
           <h4>
-            <Skeleton />
+            <Skeleton width={80}/>
           </h4>
           <span>
-            <Skeleton />
+            <Skeleton width={40}/>
           </span>
         </div>
       </div>
