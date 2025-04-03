@@ -20,8 +20,8 @@
     background-color: white;
     color: #727272 !important;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -30,13 +30,14 @@
 }
 
 .slick-next:before {
-    left: -45px !important;
+    left: -42px !important;
 }
 .slick-prev:before {
-    right: -45px !important;
+    right: -42px !important;
 }
 
 .slick-prev,
 .slick-next {
     z-index: 1 !important;
 }
+

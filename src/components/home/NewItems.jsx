@@ -7,11 +7,11 @@ import Timer from "../Timer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import NewItemsSkeleton from "../NewItemsSkeleton";
 
 const NewItems = () => {
-  //https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems
-
   const [newItems, setNewItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   async function fetchNewItems() {
     const { data } = await axios.get(
@@ -19,14 +19,10 @@ const NewItems = () => {
     );
     console.log(data);
     setNewItems(data);
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
   }
-
-  // function setTime(initialTime) {
-  //   let timeRemainingSeconds = Math.floor((initialTime - Date.now()) / 1000) % 60
-  //   let timeRemainingMinutes = Math.floor((initialTime - Date.now()) / (1000 * 60)) % 60
-  //   let timeRemainingHours = Math.floor((initialTime - Date.now()) / (1000 * 60 * 24))
-  //   return `${timeRemainingHours}h ${timeRemainingMinutes}m ${timeRemainingSeconds}s`
-  // }
 
   const settings = {
     dots: false,
@@ -122,6 +118,14 @@ const NewItems = () => {
     });
   }
 
+  function renderNewItemsSkeleton() {
+    return Array(6)
+      .fill(0)
+      .map((_, i) => {
+        return <NewItemsSkeleton key={i} />;
+      });
+  }
+
   useEffect(() => {
     fetchNewItems();
   }, []);
@@ -137,7 +141,7 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...settings}>
-            {newItems ? renderNewItems() : "loading..."}
+            {isLoading ? renderNewItemsSkeleton() : renderNewItems()}
           </Slider>
         </div>
       </div>
