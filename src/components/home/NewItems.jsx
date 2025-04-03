@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import Timer from "../Timer";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewItemsSkeleton from "../NewItemsSkeleton";
+import { Link } from "react-router-dom";
+import Timer from "../Timer";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -113,6 +113,7 @@ const NewItems = () => {
         </div>)
     });
   }
+
 
   function renderNewItemsSkeleton() {
     return Array(6)

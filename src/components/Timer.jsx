@@ -11,6 +11,10 @@ const Timer = ({ duration }) => {
         const minutes = Math.floor(totalSeconds / 60) % 60;
         const seconds = totalSeconds % 60;
 
+        if (totalSeconds === 0) {
+            return 'EXPIRED'
+        }
+
         return `${hours}h ${minutes}m ${seconds}s`;
     };
 
