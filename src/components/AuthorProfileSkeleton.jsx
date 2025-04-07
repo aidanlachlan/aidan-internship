@@ -1,6 +1,5 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import { button } from "react-router-dom";
 
 const AuthorProfileSkeleton = () => {
   return (
@@ -13,16 +12,13 @@ const AuthorProfileSkeleton = () => {
             <i className="fa fa-check"></i>
             <div className="profile_name">
               <h4>
-                <Skeleton />
+                <Skeleton width={200}/>
                 <span className="profile_username">
-                  <Skeleton />
+                  <Skeleton width={200}/>
                 </span>
                 <span id="wallet" className="profile_wallet">
-                  <Skeleton />
+                  <Skeleton width={200}/>
                 </span>
-                <button id="btn_copy" title="Copy Text">
-                  <Skeleton />
-                </button>
               </h4>
             </div>
           </div>
@@ -32,9 +28,6 @@ const AuthorProfileSkeleton = () => {
             <div className="profile_follower">
               <Skeleton width={200} height={30}/>
             </div>
-            {/* <h1>
-              <Skeleton />
-            </h1> */}
           </div>
         </div>
       </div>

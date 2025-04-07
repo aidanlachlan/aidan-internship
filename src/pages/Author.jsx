@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import AuthorProfileSkeleton from "../components/AuthorProfileSkeleton";
 
@@ -11,7 +10,8 @@ const Author = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState({});
-  // const [followerCount, setFollowerCount] = useState()
+  const [followerCount, setFollowerCount] = useState(0); // Initialize follower count to 0
+  const [isFollowing, setIsFollowing] = useState(false); // Track if the user is following
 
   async function fetchProfile() {
     const { data } = await axios.get(
@@ -19,7 +19,20 @@ const Author = () => {
     );
     console.log(data);
     setProfile(data);
+    setFollowerCount(data.followers); // Set the follower count from the API response
     setIsLoading(false);
+  }
+
+  function handleFollowClick() {
+    if (isFollowing) {
+      // If the user is already following, change to unfollow
+      setIsFollowing(false);
+      setFollowerCount(prev => prev - 1); // Decrease the follower count
+    } else {
+      // If the user is not following, change to follow
+      setIsFollowing(true);
+      setFollowerCount(prev => prev + 1); // Increase the follower count
+    }
   }
 
   function renderProfile() {
@@ -48,10 +61,14 @@ const Author = () => {
           <div className="profile_follow de-flex">
             <div className="de-flex-col">
               <div className="profile_follower">
-                {profile.followers} followers
+                {followerCount} followers
               </div>
-              <Link to="#" className="btn-main">
-                Follow
+              <Link
+                to="#"
+                className="btn-main"
+                onClick={handleFollowClick} // Handle follow/unfollow logic
+              >
+                {isFollowing ? "Unfollow" : "Follow"} {/* Conditionally render the button text */}
               </Link>
             </div>
           </div>
@@ -62,7 +79,7 @@ const Author = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, []); // Only run on mount
 
   return (
     <div id="wrapper">
@@ -96,3 +113,4 @@ const Author = () => {
 };
 
 export default Author;
+
