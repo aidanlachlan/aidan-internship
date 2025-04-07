@@ -10,28 +10,25 @@ const Author = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState({});
-  const [followerCount, setFollowerCount] = useState(0); // Initialize follower count to 0
-  const [isFollowing, setIsFollowing] = useState(false); // Track if the user is following
+  const [followerCount, setFollowerCount] = useState(0); 
+  const [isFollowing, setIsFollowing] = useState(false); 
 
   async function fetchProfile() {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
     );
-    console.log(data);
     setProfile(data);
-    setFollowerCount(data.followers); // Set the follower count from the API response
+    setFollowerCount(data.followers); 
     setIsLoading(false);
   }
 
   function handleFollowClick() {
     if (isFollowing) {
-      // If the user is already following, change to unfollow
       setIsFollowing(false);
-      setFollowerCount(prev => prev - 1); // Decrease the follower count
+      setFollowerCount(prev => prev - 1);
     } else {
-      // If the user is not following, change to follow
       setIsFollowing(true);
-      setFollowerCount(prev => prev + 1); // Increase the follower count
+      setFollowerCount(prev => prev + 1);
     }
   }
 
@@ -66,9 +63,9 @@ const Author = () => {
               <Link
                 to="#"
                 className="btn-main"
-                onClick={handleFollowClick} // Handle follow/unfollow logic
+                onClick={handleFollowClick} 
               >
-                {isFollowing ? "Unfollow" : "Follow"} {/* Conditionally render the button text */}
+                {isFollowing ? "Unfollow" : "Follow"} 
               </Link>
             </div>
           </div>
@@ -79,7 +76,7 @@ const Author = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, []); // Only run on mount
+  }, []); 
 
   return (
     <div id="wrapper">

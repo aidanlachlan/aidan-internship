@@ -10,18 +10,13 @@ const AuthorItems = () => {
   const [authorItems, setAuthorItems] = useState({});
 
   async function fetchAuthorItems() {
-    try {
       const { data } = await axios.get(
         `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
       );
-      console.log("API data:", data);
       setAuthorItems(data);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-    } catch (error) {
-      console.error("Error fetching author items:", error);
-    }
   }
 
   function renderItemsSkeleton() {
@@ -37,7 +32,6 @@ const AuthorItems = () => {
           className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
           key={item.id}
         >
-          {/* <NftCard item={item} /> */}
           <div className="nft__item">
                 <div className="author_list_pp">
                   <Link to="">
