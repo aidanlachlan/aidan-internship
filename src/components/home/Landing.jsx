@@ -28,15 +28,16 @@ const Landing = () => {
                   className="text-uppercase id-color-2"
                   data-aos="fade-up"
                   data-aos-duration="2000"
+                  data-aos-delay='500'
                 >
                   Ultraverse Market
                 </span>
               </h6>
               <div className="spacer-10"></div>
-              <h1 data-aos="fade-up" data-aos-duration="2250">
+              <h1 data-aos="fade-up" data-aos-duration="2250" data-aos-delay='500'>
                 Create, sell or collect digital items.
               </h1>
-              <p className="lead" data-aos="fade-up" data-aos-duration="2500">
+              <p className="lead" data-aos="fade-up" data-aos-duration="2500" data-aos-delay='500'>
                 Unit of data stored on a digital ledger, called a blockchain,
                 that certifies a digital asset to be unique and therefore not
                 interchangeable
@@ -47,6 +48,7 @@ const Landing = () => {
                 to="/explore"
                 data-aos="fade-up"
                 data-aos-duration="2750"
+                data-aos-delay='500'
               >
                 Explore
               </Link>
