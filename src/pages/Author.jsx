@@ -6,29 +6,33 @@ import axios from "axios";
 import AuthorProfileSkeleton from "../components/AuthorProfileSkeleton";
 
 const Author = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { authorId } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
   const [profile, setProfile] = useState({});
-  const [followerCount, setFollowerCount] = useState(0); 
-  const [isFollowing, setIsFollowing] = useState(false); 
+  const [followerCount, setFollowerCount] = useState(0);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   async function fetchProfile() {
     const { data } = await axios.get(
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`
     );
     setProfile(data);
-    setFollowerCount(data.followers); 
+    setFollowerCount(data.followers);
     setIsLoading(false);
   }
 
   function handleFollowClick() {
     if (isFollowing) {
       setIsFollowing(false);
-      setFollowerCount(prev => prev - 1);
+      setFollowerCount((prev) => prev - 1);
     } else {
       setIsFollowing(true);
-      setFollowerCount(prev => prev + 1);
+      setFollowerCount((prev) => prev + 1);
     }
   }
 
@@ -57,15 +61,9 @@ const Author = () => {
           </div>
           <div className="profile_follow de-flex">
             <div className="de-flex-col">
-              <div className="profile_follower">
-                {followerCount} followers
-              </div>
-              <Link
-                to="#"
-                className="btn-main"
-                onClick={handleFollowClick} 
-              >
-                {isFollowing ? "Unfollow" : "Follow"} 
+              <div className="profile_follower">{followerCount} followers</div>
+              <Link to="#" className="btn-main" onClick={handleFollowClick}>
+                {isFollowing ? "Unfollow" : "Follow"}
               </Link>
             </div>
           </div>
@@ -76,7 +74,7 @@ const Author = () => {
 
   useEffect(() => {
     fetchProfile();
-  }, []); 
+  }, []);
 
   return (
     <div id="wrapper">
@@ -110,4 +108,3 @@ const Author = () => {
 };
 
 export default Author;
-
