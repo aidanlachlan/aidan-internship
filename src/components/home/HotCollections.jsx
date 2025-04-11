@@ -6,8 +6,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import HotCollectionsSkeleton from "../HotCollectionsSkeleton";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
+
   const [hotCollections, setHotCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,7 +24,7 @@ const HotCollections = () => {
     setHotCollections(data);
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 250);
   }
 
   function renderHotCollections() {
@@ -28,20 +34,20 @@ const HotCollections = () => {
           <div className="nft_coll">
             <div className="nft_wrap">
               <Link to={`/item-details/${item.nftId}`}>
-                <img src={item.nftImage} className="lazy img-fluid" alt="" />
+                <img src={item.nftImage} className="lazy img-fluid" alt="" data-aos='fade-in' data-aos-duration='700'/>
               </Link>
             </div>
             <div className="nft_coll_pp">
               <Link to={`/author/${item.authorId}`}>
-                <img className="lazy pp-coll" src={item.authorImage} alt="" />
+                <img className="lazy pp-coll" src={item.authorImage} alt="" data-aos='fade-in' data-aos-duration='700'/>
               </Link>
               <i className="fa fa-check"></i>
             </div>
             <div className="nft_coll_info">
               <Link to="/explore">
-                <h4>{item.title}</h4>
+                <h4 data-aos='fade-in' data-aos-duration='700'>{item.title}</h4>
               </Link>
-              <span>{item.code}</span>
+              <span data-aos='fade-in' data-aos-duration='700'>{item.code}</span>
             </div>
           </div>
         </div>
@@ -98,12 +104,14 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos='fade-in' data-aos-duration='1000'>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider {...settings}>
-            {isLoading ? renderHotCollectionsSkeleton() : renderHotCollections()}
+          <Slider {...settings} data-aos='fade-in' data-aos-duration='700'>
+            {isLoading
+              ? renderHotCollectionsSkeleton()
+              : renderHotCollections()}
           </Slider>
         </div>
       </div>

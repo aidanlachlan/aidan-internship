@@ -5,10 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewItemsSkeleton from "../NewItemsSkeleton";
 import NftCard from "../NftCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
+
   const [newItems, setNewItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchNewItems() {
     const { data } = await axios.get(
@@ -16,8 +22,8 @@ const NewItems = () => {
     );
     setNewItems(data);
     setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
+      setIsLoading(false);
+    }, 1000);
   }
 
   const settings = {
@@ -55,11 +61,11 @@ const NewItems = () => {
     return newItems.map((item) => {
       return (
         <div className="px-2" key={item.id}>
-            <NftCard item={item}/>
-        </div>)
+          <NftCard item={item}/>
+        </div>
+      );
     });
   }
-
 
   function renderNewItemsSkeleton() {
     return Array(6)
@@ -79,7 +85,7 @@ const NewItems = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
+              <h2 data-aos='fade-in' data-aos-duration='1000'>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
